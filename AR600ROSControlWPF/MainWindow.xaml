@@ -1,0 +1,92 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AR600ROSControlWPF"
+        xmlns:Views="clr-namespace:AR600ROSControlWPF.Views" x:Class="AR600ROSControlWPF.MainWindow"
+        mc:Ignorable="d"
+        Title="ROSBridge client for AR600 robot embedded system"
+        Height="400"
+        Width="700">
+    <Grid>
+        <ToolBar HorizontalAlignment="Stretch"
+                 Height="30"
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Top">
+            <ToolBar.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionColorKey}}"/>
+            </ToolBar.Background>
+            <TextBox HorizontalAlignment="Left"
+                     Text="ws://192.168.0.101:9090"
+                     Width="200"
+                     Height="28"
+                     Margin="5,0,5,0"/>
+            <Button HorizontalAlignment="Left"
+                    Width="100"
+                    Height="28"
+                    Content="Соединение"
+                    Margin="5,0,5,0"
+                    >
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+                </Button.Background>
+            </Button>
+
+        </ToolBar>
+        <Grid HorizontalAlignment="Stretch"
+              Margin="0,30,0,20"
+              VerticalAlignment="Stretch"
+              ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid HorizontalAlignment="Stretch"
+                  Margin="0,0,0,0"
+                  VerticalAlignment="Stretch"
+                  ShowGridLines="False"
+                  Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TabControl Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <TabItem Header="Приводы" >
+                        <Views:JointListView x:Name="jointListView" Grid.Row="0" VerticalAlignment="Stretch"
+                                             Margin="0,0,0,0"
+                                             HorizontalAlignment="Stretch"/>
+                    </TabItem>
+                    <TabItem Header="Датчики"/>
+                    <TabItem Header="Движение из файлов"/>
+                    <TabItem Header="Движение из ФРУНД"/>
+
+
+                </TabControl>
+                <GridSplitter Grid.Row="1" 
+                            ShowsPreview="False" 
+                            Height="3"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
+        <StatusBar HorizontalAlignment="Stretch"
+                   Height="20"
+                   Margin="0,10,0,0"
+                   VerticalAlignment="Bottom">
+            <StatusBarItem Content="Статус соединения"
+                           Foreground="Green"
+                           HorizontalAlignment="Left"
+                           Height="20"
+                           VerticalAlignment="Center"/>
+        </StatusBar>
+
+
+    </Grid>
+</Window>
